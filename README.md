@@ -60,9 +60,10 @@ For strict mode use `scats.configs.strict.rules`.
 ### Recommended
 
 - `scats/to-array-terminal`: requires `.toArray` to be terminal in scats call chains
-- `scats/no-array-option-fallback`: disallows `Option#getOrElseValue([])` and similar array fallbacks; prefer keeping values as scats collections and using `Nil` or an appropriate empty collection
+- `scats/no-array-option-fallback`: disallows `Option#getOrElseValue([])`, `Option#getOrElseValue(Nil.toArray)`, and similar array fallbacks; prefer keeping values as scats collections and using `Nil` or an appropriate empty collection
 - `scats/no-collection-emptiness-comparison`: prefers `.isEmpty` and `.nonEmpty` over comparing scats collection `.length` or `.size` to zero
 - `scats/no-explicit-empty`: disallows creating obviously empty scats collections via constructors/factories when `Nil` or `*.empty` should be used
+- `scats/no-option-foreach-assignment`: disallows `let result = none` followed by mutation inside `option(...).foreach(...)`; prefer deriving the value with `map` or `flatMap`
 - `scats/no-useless-to-array-iteration`: disallows `for...of (... of collection.toArray)` for confirmed scats collections and auto-fixes to iterate the scats collection directly
 
 ### Strict

@@ -36,5 +36,9 @@ ruleTester.run('no-array-option-fallback', rule, {
       code: 'groupsByMember.get(1).map(x => x.toCollection.sort((a, b) => a - b).toArray).getOrElseValue([]);',
       errors: [{ messageId: 'noArrayOptionFallback' }],
     },
+    {
+      code: 'maybeCollection.getOrElseValue(Nil.toArray);',
+      errors: [{ messageId: 'noArrayOptionFallback' }],
+    },
   ],
 });

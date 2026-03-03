@@ -61,6 +61,7 @@ For strict mode use `scats.configs.strict.rules`.
 
 - `scats/to-array-terminal`: requires `.toArray` to be terminal in scats call chains
 - `scats/no-explicit-empty`: disallows creating obviously empty scats collections via constructors/factories when `Nil` or `*.empty` should be used
+- `scats/no-useless-to-array-iteration`: disallows `for...of (... of collection.toArray)` for confirmed scats collections and auto-fixes to iterate the scats collection directly
 
 ### Strict
 

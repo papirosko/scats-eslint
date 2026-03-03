@@ -65,7 +65,8 @@ For strict mode use `scats.configs.strict.rules`.
 ### Strict
 
 - includes all `recommended` rules
-- `scats/no-array-construction`: disallows direct JavaScript array construction, while allowing tuple-oriented scats APIs such as `HashMap.of([k, v])`, `toMap(x => [k, v])`, and `yield(...) => [a, b]`
+- `scats/no-array-construction`: disallows storing JavaScript arrays in variables or fields; inline arrays for external APIs and tuple-oriented scats APIs remain allowed
+- `scats/no-array-mutation`: disallows mutating JavaScript arrays directly via mutating methods, index writes, or `length = ...`
 
 ## Development
 

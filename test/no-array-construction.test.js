@@ -28,6 +28,10 @@ ruleTester.run('no-array-construction', rule, {
     'HashSet.of(1, 2, 3);',
     'Collection.from(values);',
     'HashMap.from(entries);',
+    "foo([]);",
+    "foo(new Array());",
+    "return [1, 2, 3];",
+    "const moduleConfig = { imports: [LogModule, MetricsModule] };",
     "Collection.of({id: 1, name: 'aa'}, {id: 2, name: 'bb'}).toMap(x => [x.id, x.name]);",
     "HashMap.of([1, 'a'], [2, 'b']);",
     "HashMap.from([[1, 'a'], [2, 'b']]);",
@@ -55,11 +59,19 @@ ruleTester.run('no-array-construction', rule, {
       errors: [{ messageId: 'noArrayConstruction' }],
     },
     {
-      code: 'const buffer = new mutable.ArrayBuffer([]);',
+      code: 'let items; items = [];',
       errors: [{ messageId: 'noArrayConstruction' }],
     },
     {
-      code: 'Collection.of([1, 2]);',
+      code: 'this.items = [];',
+      errors: [{ messageId: 'noArrayConstruction' }],
+    },
+    {
+      code: 'class Test { items = []; }',
+      errors: [{ messageId: 'noArrayConstruction' }],
+    },
+    {
+      code: 'const buffer = new Array();',
       errors: [{ messageId: 'noArrayConstruction' }],
     },
   ],

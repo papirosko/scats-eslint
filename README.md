@@ -66,7 +66,7 @@ For strict mode use `scats.configs.strict.rules`.
 ### Strict
 
 - includes all `recommended` rules
-- `scats/no-array-construction`: disallows storing JavaScript arrays in variables or fields; inline arrays for external APIs and tuple-oriented scats APIs remain allowed
+- `scats/no-array-construction`: disallows storing JavaScript arrays in local variables or class fields; inline arrays and object property assignments for external APIs remain allowed
 - `scats/no-array-mutation`: disallows mutating JavaScript arrays directly via mutating methods, index writes, or `length = ...`; this rule uses TypeScript type information to avoid false positives on non-array objects with methods like `push`
 - `scats/no-nullish-syntax`: disallows `?.` and `??`; prefer explicit `Option` flows such as `option(x).flatMap(...)` and `option(x).getOrElseValue(...)`
 

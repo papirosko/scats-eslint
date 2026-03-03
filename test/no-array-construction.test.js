@@ -32,6 +32,9 @@ ruleTester.run('no-array-construction', rule, {
     "foo(new Array());",
     "return [1, 2, 3];",
     "const moduleConfig = { imports: [LogModule, MetricsModule] };",
+    "let items; items = [];",
+    "this.items = [];",
+    "res.paymentProfilesCount = [];",
     "Collection.of({id: 1, name: 'aa'}, {id: 2, name: 'bb'}).toMap(x => [x.id, x.name]);",
     "HashMap.of([1, 'a'], [2, 'b']);",
     "HashMap.from([[1, 'a'], [2, 'b']]);",
@@ -56,14 +59,6 @@ ruleTester.run('no-array-construction', rule, {
     },
     {
       code: 'const arr = Array(3);',
-      errors: [{ messageId: 'noArrayConstruction' }],
-    },
-    {
-      code: 'let items; items = [];',
-      errors: [{ messageId: 'noArrayConstruction' }],
-    },
-    {
-      code: 'this.items = [];',
       errors: [{ messageId: 'noArrayConstruction' }],
     },
     {

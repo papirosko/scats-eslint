@@ -28,6 +28,7 @@ ruleTester.run('no-array-typed-variable', rule, {
     'class Test { items = Collection.of(1, 2, 3); }',
     '/** @scatsAllowArrayTypes */ class ApiConfig { readonly keys: ReadonlyArray<string>; }',
     '// @scatsAllowArrayTypes\nclass ApiConfig { keys: string[]; }',
+    '/**\n * @scatsAllowArrayTypes\n */\nexport class OfferedServiceBriefClickView { additionalImages: string[]; }',
   ],
   invalid: [
     {

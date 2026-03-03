@@ -1,0 +1,38 @@
+{
+  "name": "eslint-plugin-scats",
+  "version": "0.1.0",
+  "description": "ESLint rules for safe scats usage",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js"
+  },
+  "files": [
+    "lib"
+  ],
+  "keywords": [
+    "eslint",
+    "eslintplugin",
+    "eslint-plugin",
+    "scats",
+    "typescript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/papirosko/scats-eslint.git"
+  },
+  "bugs": {
+    "url": "https://github.com/papirosko/scats-eslint/issues"
+  },
+  "homepage": "https://github.com/papirosko/scats-eslint#readme",
+  "scripts": {
+    "test": "node --test \"test/**/*.test.js\""
+  },
+  "peerDependencies": {
+    "eslint": "^8.57.0 || ^9.0.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/parser": "^8.46.0",
+    "eslint": "^9.21.0"
+  },
+  "license": "ISC"
+}

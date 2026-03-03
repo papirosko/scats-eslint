@@ -26,6 +26,8 @@ ruleTester.run('no-array-typed-variable', rule, {
     'interface Test { items: number[]; }',
     'class Test { items: Collection<number>; }',
     'class Test { items = Collection.of(1, 2, 3); }',
+    '/** @scatsAllowArrayTypes */ class ApiConfig { readonly keys: ReadonlyArray<string>; }',
+    '// @scatsAllowArrayTypes\nclass ApiConfig { keys: string[]; }',
   ],
   invalid: [
     {
@@ -42,11 +44,11 @@ ruleTester.run('no-array-typed-variable', rule, {
     },
     {
       code: 'class Test { items: string[]; }',
-      errors: [{ messageId: 'noArrayTypedVariable' }],
+      errors: [{ messageId: 'noArrayTypedClassField' }],
     },
     {
       code: 'class Test { readonly items: Array<string> = values.toArray; }',
-      errors: [{ messageId: 'noArrayTypedVariable' }],
+      errors: [{ messageId: 'noArrayTypedClassField' }],
     },
   ],
 });

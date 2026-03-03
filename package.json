@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-scats",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "ESLint rules for safe scats usage",
   "main": "lib/index.js",
   "exports": {

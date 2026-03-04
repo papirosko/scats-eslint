@@ -65,6 +65,7 @@ For strict mode use `scats.configs.strict.rules`.
 - `scats/no-explicit-empty`: disallows creating obviously empty scats collections via constructors/factories when `Nil` or `*.empty` should be used
 - `scats/no-option-nullish-fallback`: disallows `Option#getOrElse(() => null)`, `Option#getOrElseValue(null)`, and the corresponding `undefined` fallbacks when `.orNull` or `.orUndefined` can be used directly
 - `scats/no-option-foreach-assignment`: disallows `let result = none` followed by mutation inside `option(...).foreach(...)`; prefer deriving the value with `map` or `flatMap`
+- `scats/prefer-get-or-else-value`: prefers `Option#getOrElseValue(...)` over `Option#getOrElse(() => ...)` when the callback returns an explicit constant such as a literal or static template string
 - `scats/no-useless-to-array-iteration`: disallows `for...of (... of collection.toArray)` for confirmed scats collections and auto-fixes to iterate the scats collection directly
 
 ### Strict

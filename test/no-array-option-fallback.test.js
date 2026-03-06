@@ -22,6 +22,8 @@ ruleTester.run('no-array-option-fallback', rule, {
     'maybeCollection.getOrElseValue(Nil);',
     'maybeNumbers.getOrElseValue(fallback);',
     'optionArray.map(x => x.length).getOrElseValue(0);',
+    'maybeCollection.getOrElse(() => Nil);',
+    'maybeCollection.getOrElse(() => fallbackCollection);',
   ],
   invalid: [
     {
@@ -38,6 +40,22 @@ ruleTester.run('no-array-option-fallback', rule, {
     },
     {
       code: 'maybeCollection.getOrElseValue(Nil.toArray);',
+      errors: [{ messageId: 'noArrayOptionFallback' }],
+    },
+    {
+      code: 'maybeCollection.getOrElse(() => []);',
+      errors: [{ messageId: 'noArrayOptionFallback' }],
+    },
+    {
+      code: 'maybeCollection.getOrElse(function () { return []; });',
+      errors: [{ messageId: 'noArrayOptionFallback' }],
+    },
+    {
+      code: 'maybeCollection.getOrElse(() => Nil.toArray);',
+      errors: [{ messageId: 'noArrayOptionFallback' }],
+    },
+    {
+      code: 'maybeCollection.getOrElse(() => new Array());',
       errors: [{ messageId: 'noArrayOptionFallback' }],
     },
   ],

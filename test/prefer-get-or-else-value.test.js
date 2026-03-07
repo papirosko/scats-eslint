@@ -37,6 +37,7 @@ function withOptionDeclarations(code) {
 type Option<T> = {
   orElse(fn: () => Option<T>): Option<T>;
   orElseValue(other: Option<T>): Option<T>;
+  map<U>(fn: (value: T) => U): Option<U>;
 };
 
 declare const entity: {
@@ -62,6 +63,7 @@ ruleTester.run('prefer-get-or-else-value', rule, {
     'maybeUser.getOrElse(() => ({ value: 1 }));',
     'maybeUser.getOrElse(() => { audit(); return 0; });',
     withOptionDeclarations('const timestamp = entity.sendTimestamp.orElseValue(entity.creationTimestamp);'),
+    withOptionDeclarations('const timestamp = entity.sendTimestamp.orElse(() => entity.creationTimestamp.map((x) => x + 1));'),
     withTypeInfo(`
 type MaybeTimestamp = { value: number };
 declare const entity: { deliveryTimestamp: MaybeTimestamp };
@@ -100,6 +102,7 @@ const timestamp = maybeUser.orElse(() => entity.deliveryTimestamp);
 type Option<T> = {
   orElse(fn: () => Option<T>): Option<T>;
   orElseValue(other: Option<T>): Option<T>;
+  map<U>(fn: (value: T) => U): Option<U>;
 };
 
 declare const entity: {
@@ -123,6 +126,7 @@ const timestamp = entity.sendTimestamp.orElseValue(entity.creationTimestamp);
 type Option<T> = {
   orElse(fn: () => Option<T>): Option<T>;
   orElseValue(other: Option<T>): Option<T>;
+  map<U>(fn: (value: T) => U): Option<U>;
 };
 
 declare const entity: {

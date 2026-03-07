@@ -62,6 +62,7 @@ For strict mode use `scats.configs.strict.rules`.
 - `scats/to-array-terminal`: requires `.toArray` to be terminal in scats call chains
 - `scats/no-array-option-fallback`: disallows `Option#getOrElseValue([])`, `Option#getOrElse(() => [])`, `Option#getOrElseValue(Nil.toArray)`, and similar array fallbacks; prefer keeping values as scats collections and using `Nil` or an appropriate empty collection
 - `scats/no-collection-emptiness-comparison`: prefers `.isEmpty` and `.nonEmpty` over comparing scats collection `.length` or `.size` to zero
+- `scats/no-collection-get-zero`: disallows `Collection#get(0)`; prefer `head` or `headOption` to make first-element access explicit
 - `scats/no-explicit-empty`: disallows creating obviously empty scats collections via constructors/factories when `Nil` or `*.empty` should be used
 - `scats/no-option-nullish-fallback`: disallows `option(null)`/`option(undefined)` in favor of `none`, disallows `Option#getOrElse(() => null)`, `Option#getOrElseValue(null)`, the corresponding `undefined` fallbacks, and redundant patterns such as `option(existingOption.orNull)` or `option(existingOption.orNull).orElse(() => option(fallback.orNull))` when the original `Option` should be used directly
 - `scats/no-option-foreach-assignment`: disallows `let result = none` followed by mutation inside `option(...).foreach(...)`; prefer deriving the value with `map` or `flatMap`

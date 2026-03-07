@@ -56,6 +56,7 @@ ruleTester.run('no-option-nullish-fallback', rule, {
   valid: [
     'maybeUser.orNull;',
     'maybeUser.orUndefined;',
+    'option(value);',
     'maybeUser.getOrElseValue(fallback);',
     'maybeUser.getOrElse(() => buildFallback());',
     'maybeUser.getOrElse(function () { return fallback; });',
@@ -68,6 +69,21 @@ const timestamp = option(maybeTimestamp.orNull);
     `),
   ],
   invalid: [
+    {
+      code: 'option(null);',
+      output: 'none;',
+      errors: [{ messageId: 'preferNoneOption' }],
+    },
+    {
+      code: 'option(undefined);',
+      output: 'none;',
+      errors: [{ messageId: 'preferNoneOption' }],
+    },
+    {
+      code: 'option(void 0);',
+      output: 'none;',
+      errors: [{ messageId: 'preferNoneOption' }],
+    },
     {
       code: 'maybeUser.getOrElse(() => null);',
       output: 'maybeUser.orNull;',
